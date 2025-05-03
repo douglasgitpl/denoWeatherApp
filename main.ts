@@ -4,7 +4,7 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
 
   if (url.pathname === "/weather") {
-    const weather = await fetchWeather("London");
+    const weather = await fetchWeather();
 
     return new Response(JSON.stringify(weather), {
       headers: { "Content-Type": "application/json" },
