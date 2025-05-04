@@ -13,11 +13,12 @@ export async function fetchWeather() {
     throw new Error(`Error fetching weather data: ${data.message}`);
   }
 
-return {
+  return {
+    city: data.name,
     temp: `${data.main.temp}°C`,
     humidity: `${data.main.humidity}%`,
-    description: data.weather[0].description
-};
+    description: data.weather[0].description,
+  };
 }
 fetchWeather()
-  .then((data) => console.log("Weather result:", data))
+  .then((data) => console.log("Weather result:", data));

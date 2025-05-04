@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Today's Weather</h1>
+    <div id="weather">Loading...</div>
+    <script>
+      fetch("/weather").then((res) => res.json()).then((data) => {
+        document.getElementById("weather").innerText =
+          `${data.city}: ${data.temp}, Humidity: ${data.humidity}, Description: ${data.description}`;
+      }).catch(() => {
+        document.getElementById("weather").innerText =
+          "Error fetching weather.";
+      });
+    </script>
+  </body>
+</html>
