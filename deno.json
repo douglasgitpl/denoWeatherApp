@@ -4,5 +4,13 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
+  },
+  "deploy": {
+    "project": "c5b5923a-4a54-4c6c-bf2f-0e0a480ce187",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
   }
 }
