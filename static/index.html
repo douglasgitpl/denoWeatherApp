@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+      .weather-entry {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Today's Weather</h1>
+    <div id="weather">Loading...</div>
+    <script>
+      fetch("/weather")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("weather");
+          container.innerHTML = ""; // Clear "Loading..."
+
+          data.forEach((entry) => {
+            const div = document.createElement("div");
+            div.className = "weather-entry";
+            div.innerText = `${entry.city}: ${entry.temp}, Humidity: ${entry.humidity}, Conditions: ${entry.description}`;
+            container.appendChild(div);
+          });
+        })
+        .catch(() => {
+          document.getElementById("weather").innerText =
+            "Error fetching weather.";
+        });
+    </script>
+  </body>
+</html>
