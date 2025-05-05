@@ -34,7 +34,7 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "dougpl-denoweather-36"
+          project: "dougpl-denoweather-77"
           entrypoint: "main.ts"
           root: ""
           
