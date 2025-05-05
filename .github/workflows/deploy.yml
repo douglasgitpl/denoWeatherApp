@@ -36,6 +36,6 @@ jobs:
         with:
           project: "dougpl-denoweatherapp-11"
           entrypoint: "main.ts"
-          root: "denoweatherapp"
+          root: ""
           
           
