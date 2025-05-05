@@ -35,7 +35,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "dougpl-denoweatherapp-11"
-          entrypoint: "denoweatherapp/main.ts"
-          root: ""
+          entrypoint: "main.ts"
+          root: "denoweatherapp"
           
           
