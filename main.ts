@@ -1,25 +1,25 @@
 import { fetchWeather } from "./utils/fetchWeather.ts";
+import { serveDir } from "https://deno.land/std@0.224.0/http/file_server.ts";
+
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
 
   if (url.pathname === "/weather") {
-    const weather = await fetchWeather();
+    const cities = ["New York", "Poznan"];
 
-    return new Response(JSON.stringify(weather), {
+    // Fetch weather data for both cities in parallel
+    const weatherResults = await Promise.all(
+      cities.map((city) => fetchWeather(city))
+    );
+
+    return new Response(JSON.stringify(weatherResults), {
       headers: { "Content-Type": "application/json" },
     });
   }
-
-  // Serve static HTML file
-
-  if (url.pathname === "/" || url.pathname === "/index.html") {
-    const html = await Deno.readTextFile("./static/index.html");
-
-    return new Response(html, {
-      headers: { "Content-Type": "text/html" },
-    });
-  }
-
-  return new Response("Not Found", { status: 404 });
+  return serveDir(req, {
+    fsRoot: "static",
+    urlRoot: "",
+    showDirListing: false,
+  });
 });
